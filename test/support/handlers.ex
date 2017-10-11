@@ -22,6 +22,20 @@ defmodule JSONRPC2.SpecHandler do
   end
 end
 
+defmodule JSONRPC2.VSCodeHandler do
+  use JSONRPC2.Server.Handler
+  alias JSONRPC2.Serializers.VSCode
+
+  def handle_request("encode", [message]) do
+    VSCode.encode(message)
+  end
+
+  def handle_request("decode", [packet]) do
+    VSCode.decode(packet)
+  end
+
+end
+
 defmodule JSONRPC2.ErrorHandler do
   use JSONRPC2.Server.Handler
 
